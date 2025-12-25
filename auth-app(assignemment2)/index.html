@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth System - DummyJSON Demo</title>
+    <meta name="description" content="Modern authentication system using DummyJSON API">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="background-gradient"></div>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page active">
+        <div class="container">
+            <div class="auth-card glass-effect">
+                <div class="auth-header">
+                    <div class="logo-container">
+                        <div class="logo-icon">🔐</div>
+                        <h1>Welcome Back</h1>
+                    </div>
+                    <p class="subtitle">Sign in to continue to your account</p>
+                </div>
+
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                placeholder="Enter your username"
+                                required
+                                autocomplete="username"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Enter your password"
+                                required
+                                autocomplete="current-password"
+                            >
+                            <button type="button" class="toggle-password" id="toggle-password" aria-label="Toggle password visibility">
+                                <span class="eye-icon">👁️</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember-me">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">Remember me</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="login-btn">
+                        <span class="btn-text">Sign In</span>
+                        <span class="btn-loader"></span>
+                    </button>
+
+                    <div id="error-message" class="error-message" role="alert"></div>
+                </form>
+
+                <div class="auth-footer">
+                    <p class="demo-hint">
+                        💡 Try: <strong>emilys</strong> / <strong>emilyspass</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="page">
+        <nav class="navbar glass-effect">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <div class="logo-icon-small">🔐</div>
+                    <span class="brand-text">Auth Demo</span>
+                </div>
+                <button id="logout-btn" class="btn btn-secondary">
+                    <span>Logout</span>
+                    <span class="logout-icon">🚪</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="dashboard-container">
+            <div id="loading-state" class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading your profile...</p>
+            </div>
+
+            <div id="profile-content" class="profile-content" style="display: none;">
+                <div class="profile-card glass-effect">
+                    <div class="profile-header">
+                        <div class="avatar-container">
+                            <img id="user-avatar" src="" alt="User avatar" class="avatar">
+                            <div class="avatar-badge">✓</div>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="user-name" class="user-name"></h2>
+                            <p id="user-email" class="user-email"></p>
+                        </div>
+                    </div>
+
+                    <div class="profile-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Username</span>
+                            <span id="user-username" class="detail-value"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Gender</span>
+                            <span id="user-gender" class="detail-value"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">User ID</span>
+                            <span id="user-id" class="detail-value"></span>
+                        </div>
+                    </div>
+
+                    <div class="session-info">
+                        <div class="session-badge">
+                            <span class="status-dot"></span>
+                            <span>Session Active</span>
+                        </div>
+                        <button id="refresh-token-btn" class="btn btn-outline">
+                            <span>Refresh Session</span>
+                            <span>🔄</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card glass-effect">
+                        <div class="stat-icon">🔑</div>
+                        <div class="stat-content">
+                            <h3>Access Token</h3>
+                            <p>Valid & Active</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-effect">
+                        <div class="stat-icon">🔄</div>
+                        <div class="stat-content">
+                            <h3>Refresh Token</h3>
+                            <p>Available</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-effect">
+                        <div class="stat-icon">🛡️</div>
+                        <div class="stat-content">
+                            <h3>Security</h3>
+                            <p>Protected Route</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
